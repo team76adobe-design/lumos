@@ -2,8 +2,15 @@
 <p align="center">
 <img width="250"  alt="image" src="https://github.com/user-attachments/assets/ca41d8a5-a9ec-4095-a969-b8ffe2058e25" />
 
-## Demo Video
-[![Watch the video](https://img.youtube.com/vi/8_Ilw67fWEA/maxresdefault.jpg)](https://youtu.be/i-tt5Jt7GBY)
+<h2>Demo Video</h2>
+
+<a href="https://youtu.be/i-tt5Jt7GBY">
+  <img src="https://img.youtube.com/vi/8_Ilw67fWEA/maxresdefault.jpg" 
+       width="550" 
+       height="350" 
+       alt="Demo Video Thumbnail">
+</a>
+
 
 ### [Watch the Demo on YouTube](https://youtu.be/i-tt5Jt7GBY)
 
@@ -487,8 +494,8 @@ Using a CLIP-based similarity system as guard rails provides a fast, lightweight
 
 
 
-### 3.Privacy
-
+### 3.User Privacy
+In 2030, users will be far more sensitive about where their personal images are processed, which is why the core Lumos image-editing workflows run fully on-device, avoiding continuous cloud dependence and preventing routine uploads of private photos. However, for users who choose to personalize the model, we provide an optional secure cloud-based LoRA training service. Only the images the user explicitly selects are uploaded through an encrypted channel, processed inside an isolated training container, and permanently deleted immediately after the LoRA weights are produced. The resulting personalized LoRA is the only artifact returned to the user, and no images, metadata, or embeddings are stored or reused for any secondary purpose. This design balances strong privacy with the ability to learn a user’s preferred style—ensuring personalization remains powerful, controlled, and secure.
 
 ## Compute Profile
 All experiments were conducted on Runpod NVIDIA RTX 4090 GPUs for inference, while Runpod NVIDIA A40 GPUs were used for training the personalized LoRA models.
