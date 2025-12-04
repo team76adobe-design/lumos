@@ -81,7 +81,7 @@ LUMOS/
 
 ## How to Use the Repository
 ```bash
-git clone https://github.com/team76adobe-design/submission.git
+git clone https://github.com/team76adobe-design/lumos.git
 cd submission
 pip install huggingface-hub
 hf auth login
@@ -140,7 +140,6 @@ pip install gradio_magicquill-0.0.1-py3-none-any.whl
 cp -f pyproject.toml MagicQuill/LLaVA/
 pip install -e MagicQuill/LLaVA/
 pip install -r requirements.txt
-python main.py
 ```
 
 Running the Model:- <br>
@@ -226,9 +225,9 @@ uvicorn main:backend --host 0.0.0.0 --port 8000
 ```
 13.MagicQuill
 ```bash
-source venv_7/bin/activate 
-cd backend/MagicQuill
-uvicorn main:backend --host 0.0.0.0 --port 8000
+cd backend/magicquill
+source Magic_venv/bin/activate
+python main.py
 ```
 14.InvisMark - for adding watermark to the image
 ```bash
