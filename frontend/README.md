@@ -49,7 +49,6 @@ This application has been meticulously **optimized for the iPhone 16 Pro Max** f
 ### Voice Recognition API
 The voice recognition backend is currently hosted via Google Colab. Ensure the notebook is running for voice features to function correctly.
 
-* **API Endpoint/Notebook:** [Google Colab Voice Recognition Drive](https://colab.research.google.com/drive/1UIDXW-KNdcVDCg6QKgBXkzciooL3Jbdl?usp=sharing)
 
 ---
 
