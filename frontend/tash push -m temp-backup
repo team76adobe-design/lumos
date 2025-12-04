@@ -1,0 +1,92 @@
+[1mdiff --git a/src/components/PolygonHighlighter.js b/src/components/PolygonHighlighter.js[m
+[1mindex b9b8817..b2a9846 100644[m
+[1m--- a/src/components/PolygonHighlighter.js[m
+[1m+++ b/src/components/PolygonHighlighter.js[m
+[36m@@ -358,7 +358,7 @@[m [mconst PolygonHighlighter = ({[m
+                 // Clear the area first[m
+                 ctx.clearRect(0, 0, canvas.width, canvas.height);[m
+ [m
+[31m-                ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';[m
+[32m+[m[32m                ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';[m
+                 ctx.shadowBlur = 15;[m
+                 ctx.globalCompositeOperation = 'source-over';[m
+                 ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform[m
+[36m@@ -399,7 +399,7 @@[m [mconst PolygonHighlighter = ({[m
+                 const { bbox, offset, maskCanvas, imageData } = floatingSelection.current;[m
+ [m
+                 // Layer 2: Dark Overlay[m
+[31m-                ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';[m
+[32m+[m[32m                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';[m
+                 ctx.fillRect(0, 0, canvas.width, canvas.height);[m
+ [m
+                 // Draw Grey Shape at Source Position (to hide original)[m
+[36m@@ -434,11 +434,6 @@[m [mconst PolygonHighlighter = ({[m
+ [m
+                 ctx.drawImage(sCanvas, drawX, drawY, drawW, drawH);[m
+ [m
+[31m-                // Optional: Draw border around selection[m
+[31m-                ctx.strokeStyle = '#fff';[m
+[31m-                ctx.lineWidth = 1;[m
+[31m-                ctx.strokeRect(drawX, drawY, drawW, drawH);[m
+[31m-[m
+                 ctx.restore();[m
+ [m
+             } else if (shouldShowPolygons) {[m
+[36m@@ -1054,7 +1049,7 @@[m [mconst PolygonHighlighter = ({[m
+                     left: 0,[m
+                     top: 0,[m
+                     pointerEvents: "none",[m
+[31m-                    zIndex: 50, // Ensure it's above overlays[m
+[32m+[m[32m                    zIndex: 39, // Ensure it's above overlays[m
+                 }}[m
+             />[m
+         </div>[m
+[1mdiff --git a/src/components/menus/MenuBar.js b/src/components/menus/MenuBar.js[m
+[1mindex 492a820..02e406b 100644[m
+[1m--- a/src/components/menus/MenuBar.js[m
+[1m+++ b/src/components/menus/MenuBar.js[m
+[36m@@ -143,7 +143,7 @@[m [mconst MenuBar = ({[m
+   // Track when to show bottom bar[m
+   React.useEffect(() => {[m
+     // Only show bottom bar when a specific edit control is selected (not just when edit mode opens)[m
+[31m-    if (activeEditControl && activeEditControl !== "menu_open") {[m
+[32m+[m[32m    if (activeEditControl && activeEditControl !== "adjust") {[m
+       setShowBottomBar(true);[m
+     } else {[m
+       setShowBottomBar(false);[m
+[36m@@ -229,18 +229,10 @@[m [mconst MenuBar = ({[m
+         }, 250);[m
+       } else {[m
+         // Opening logic[m
+[31m-        triggerToast("Adjustment"); // Trigger Toast[m
+[31m-        setShowActiveMenu(false);[m
+[31m-        setIsAnimating(true);[m
+[31m-[m
+[31m-        setTimeout(() => {[m
+[31m-          setActiveEditControl("menu_open");[m
+[31m-          setIsAnimating(false);[m
+[31m-[m
+[31m-          setTimeout(() => {[m
+[31m-            setShowActiveMenu(true);[m
+[31m-          }, 200);[m
+[31m-        }, 400);[m
+[32m+[m[32m        triggerToast("Adjustment");[m
+[32m+[m[32m        animateMenuTransition(() => {[m
+[32m+[m[32m          setActiveEditControl("adjust");[m
+[32m+[m[32m        });[m
+       }[m
+       return;[m
+     }[m
+[36m@@ -314,14 +306,14 @@[m [mconst MenuBar = ({[m
+ [m
+     if (activeEditControl) {[m
+       return ([m
+[31m-        <div className="flex items-center w-full py-2 rounded-3xl">[m
+[32m+[m[32m        <div className="flex items-center justify-between w-full py-2">[m
+           {/* AUTO BUTTON */}[m
+           <button[m
+             onClick={() => {[m
+               triggerToast("auto"); // Trigger Toast[m
+               handleAutoAdjust();[m
+             }}[m
+[31m-            className="flex-shrink-0 f

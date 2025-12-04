@@ -1,0 +1,326 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @keyframes pill-spring {
+    0% { transform: scale(1); }
+    35% { transform: scale(0.45); }
+    65% { transform: scale(1.08); }
+    85% { transform: scale(0.96); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-pill-spring {
+    animation: pill-spring 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes compress-expand {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.3); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-compress {
+    animation: compress-expand 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes icon-expand {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-icon-expand {
+    animation: icon-expand 0.6s ease-out forwards;
+  }
+
+  @keyframes expand-slow {
+    0% { transform: scale(0.3); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-expand {
+    animation: expand-slow 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes menu-expand {
+    0% { width: 64px; }
+    100% { width: 100%; }
+  }
+
+  .animate-menu-expand {
+    animation: menu-expand 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  @keyframes menu-collapse {
+    0% { width: 100%; }
+    100% { width: 64px; }
+  }
+
+  .animate-menu-collapse {
+    animation: menu-collapse 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Safe-area helpers for iOS fullscreen / notch devices */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent scrolling on the body */
+  overscroll-behavior: none; /* Prevent bounce effects */
+  -webkit-overflow-scrolling: touch;
+  background-color: #000; /* Match app background */
+}
+
+/* Mobile-only app container */
+#root {
+  height: 100%;
+  height: 100dvh; /* Use dynamic viewport height */
+  width: 100%;
+  max-width: 480px; /* Keep desktop constraint */
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Add subtle shadow on desktop to show mobile frame */
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+/* global.css */
+.h-screen-safe {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.pt-safe {
+  /* padding-top: env(safe-area-inset-top, 0px); */
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+
+/* Desktop background when app is constrained */
+@media (min-width: 481px) {
+  body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  }
+
+  #root {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* When running as a web app on iOS with a translucent status bar
+   allow content to extend under the area and use safe-area insets
+   so important content isn't hidden by notches/status bar. */
+body {
+  /* padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top); */
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: #000;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-40px) scale(0.8);
+    max-height: 0;
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+    max-height: 200px;
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes bottomBarClose {
+  0% { 
+    opacity: 1; 
+    transform: translateY(0) scaleX(1);
+    max-height: 200px;
+  }
+  30% {
+    opacity: 0;
+    transform: translateY(0) scaleX(1);
+    max-height: 200px;
+  }
+  70% {
+    opacity: 0;
+    transform: translateY(0) scaleX(0.2);
+    max-height: 200px;
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(0) scaleX(0.2);
+    max-height: 0;
+  }
+}
+
+.animate-bottomBarClose {
+  animation: bottomBarClose 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Slider styling - add this to your existing styles */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: -6px;
+    background: linear-gradient(135deg, #FE5959 0%, #FF7676 100%);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(254, 89, 89, 0.4);
+    cursor: grab;
+}
+
+/* Toast animations */
+@keyframes toastPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.animate-toastPopIn {
+  animation: toastPopIn 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+
+@keyframes menu-compress {
+  0%   { transform: scale(1); opacity: 1; border-radius: 32px; }
+  100% { transform: scale(0.82); opacity: 0.6; border-radius: 999px; }
+}
+
+@keyframes menu-expand {
+  0%   { transform: scale(0.82); opacity: 0.6; border-radius: 999px; }
+  60%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; border-radius: 32px; }
+}
+
+.menu-compress {
+  animation: menu-compress 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.menu-expand {
+  animation: menu-expand 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes diagonal-move {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(500px, 500px);
+        opacity: 0;
+    }
+}
+
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: diagonal-move 3s linear forwards;
+}
+
+
+@keyframes twinkle {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+.twinkle-star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* default grid lines */
+.crop-box .grid > div {
+  border-color: rgba(255,255,255,0.1);  /* same as border-white/10 */
+  transition: border-color 120ms ease;
+}
+
+/* when resizing, make grid lines full white */
+.crop-box.handle-active .grid > div {
+  border-color: rgba(255,255,255,1); /* equivalent to border-white */
+}
+
+/* ensure canvas root sits under the footer and can shrink */
+.image-canvas-root {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  max-height: 100%;
+  min-height: 0; /* allow flex parent to shrink on tiny screens */
+  overflow: hidden;
+  pointer-events: auto;
+  width: 100%;
+}
+
+
+/* Some of your overlays use absolute inset-0 and z-40/50/60
+   make sure their z-index remains < footer's z-index (e.g. 1200) */
+.image-canvas-root .twinkle-star,
+.image-canvas-root > .absolute,
+.image-canvas-root [class*="z-"] {
+  /* no change here; just a note — footer z-index should be higher than these */
+}
+
+/* Safety: if your footer overlay z-index is lower than 200, bump it up.
+   Example footer overlay (already suggested previously):
+.app-footer.overlay { z-index: 1200; }
+*/
