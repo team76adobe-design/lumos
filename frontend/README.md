@@ -47,7 +47,7 @@ This application has been meticulously **optimized for the iPhone 16 Pro Max** f
 ## 🔧 Architecture & Dependencies
 
 ### Voice Recognition API
-The voice recognition backend is currently hosted via Google Colab. Ensure the notebook is running for voice features to function correctly.
+The voice recognition backend is based on whispert model easy and small to run on edge devices
 
 
 ---
