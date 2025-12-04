@@ -405,13 +405,6 @@ Our dynamic style-transfer system uses Stable Diffusion 1.5 together with a scal
 | <img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/84d452cd-3484-46ab-afe4-a289517723aa" /> |Turn this Man into a retro game character|Retro Game Art|<img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/1967c51d-dc04-4227-ba1e-093360136619" />|
 
 
-### 12. Hybrid CLIP + Moondream2 Defect Analysis System
-#### Pipeline Explanation
-The Hybrid CLIP + Moondream2 system performs intelligent photographic defect analysis by first using CLIP to embed the input image and compare it against a curated vocabulary of 101 defect descriptions, ranking the top three most likely issues through cosine similarity. These defect candidates, along with the image, are then passed to the Moondream2 vision-language model, which verifies whether each defect is genuinely present and provides a grounded, human-readable explanation based on its visual reasoning. This combined retrieval-and-verification pipeline delivers fast, scalable, and highly reliable defect detection—catching lighting issues, blur, distortions, color problems, and AI artifacts—while ensuring that every prediction is context-aware, interpretable, and accurate.
-#### Inference Time & Memory Used
-* Inference Time - 9 seconds
-* Memory Used - 4 Gb VRAM
-
 
 
 ---
@@ -478,6 +471,16 @@ LBM Relighting performs illumination transfer in a single step by mbackending th
 |-------------|--------------|
 |<img width="1476" height="836" alt="image" src="https://github.com/user-attachments/assets/50733bf8-21d8-4cd6-b054-7c0035c05fa5" />|<img width="1497" height="835" alt="image" src="https://github.com/user-attachments/assets/568b1b0c-ee86-4e9a-8035-69f4835b1be8" />|
 
+
+
+
+### 5. Hybrid CLIP + Moondream2 Defect Analysis System
+#### Pipeline Explanation
+The Hybrid CLIP + Moondream2 system performs intelligent photographic defect analysis by first using CLIP to embed the input image and compare it against a curated vocabulary of 101 defect descriptions, ranking the top three most likely issues through cosine similarity. These defect candidates, along with the image, are then passed to the Moondream2 vision-language model, which verifies whether each defect is genuinely present and provides a grounded, human-readable explanation based on its visual reasoning. This combined retrieval-and-verification pipeline delivers fast, scalable, and highly reliable defect detection—catching lighting issues, blur, distortions, color problems, and AI artifacts—while ensuring that every prediction is context-aware, interpretable, and accurate.
+#### Inference Time & Memory Used
+* Inference Time - 9 seconds
+* Memory Used - 4 Gb VRAM
+  
 ---
 
 ## Ethical Considerations
