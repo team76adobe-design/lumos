@@ -1,0 +1,6 @@
+uvicorn
+ngrok
+pyngrok
+nest_asyncio
+torchcodec
+torch 
