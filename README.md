@@ -82,6 +82,7 @@ LUMOS/
 ## How to Use the Repository
 ### 1.Frontend:
 Follow the instructions in /frontend/README.md
+Also there is a live deployed link available in /frontend/README.md which is for interacting with the UI.
 ### 2.Backend:
 ```bash
 git clone https://github.com/team76adobe-design/lumos.git
