@@ -252,7 +252,7 @@ uvicorn main:app --host 0.0.0.0 --port 8014
 ```bash
 source venv_whisper/bin/activate
 cd whisper
-python whisper.py
+python main.py
 ```
 
 These are all local pipelines. Similarly the cloud pipelines can be implemented from the given codes in the **CLOUD_FEATURES**.
