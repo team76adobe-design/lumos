@@ -264,31 +264,38 @@ These are all local pipelines. Similarly the cloud pipelines can be implemented 
 
 Our system is optimized for **low latency**, **efficient GPU usage**, and **high-quality image outputs**. Below is a detailed explanation of each major component in the inference pipeline.
 
----
 
-###  Dynamic Model Loading (Load → Run → Unload)
+####  1. Dynamic Model Loading (Load → Run → Unload)
 
 To ensure fast response times and optimal GPU memory utilization, each model is loaded **only when the user selects it**. When a tool is activated, a `POST /load_model` request initializes the corresponding model into GPU memory. After the user provides input—either an image or a prompt—the system executes `POST /run` to perform inference. Once the user returns to the main menu, `POST /unload` is triggered, freeing GPU resources. This prevents unnecessary memory consumption, eliminates repetitive heavy loads, and significantly improves inference speed across the system.
 
----
 
-###  Optimized High-Resolution Image Pipeline (2K → 512 → 2K)
+####  2. Optimized High-Resolution Image Pipeline (2K → 512 → 2K)
 
 The pipeline supports images up to **2K resolution**, but for faster computation, inputs are first downsampled to **512×512**. The core editing or generation task is performed at this reduced resolution to minimize latency. After processing, a **diffusion-based upscaler** reconstructs the output back to 2K by converting it into latent space, refining it, and producing a detailed, sharp high-resolution result. This approach balances speed with quality by performing heavy operations only where necessary.
 
----
 
-###  Algorithmic Enhancements on Stable Diffusion 1.5
+####  3. Algorithmic Enhancements on Stable Diffusion 1.5
 
 We incorporate **optimized algorithms on top of SD 1.5**, dramatically improving both inference speed and output accuracy. These enhancements allow SD 1.5 to operate more efficiently than standard implementations while maintaining strong visual fidelity. Because of its versatility, SD 1.5 is reused for **more than 60% of all tasks**, minimizing model-switch overhead and reducing GPU load, which results in smoother and faster operations throughout the system.
 
----
 
-###  Reuse of Moondream and CLIP for Auxiliary Tasks
+####  4. Reuse of Moondream and CLIP for Auxiliary Tasks
 
 To further streamline the pipeline, models like **Moondream** and **CLIP** are reused across multiple subtasks. Moondream assists with lightweight VLM functions, while CLIP powers semantic reasoning, safety filtering, and classification. Reusing these models avoids repeated initializations, reduces memory fragmentation, and significantly accelerates workflows that rely on vision-language understanding or content validation.
 
 ---
+
+## Speech-to-Text with openai/whisper-tiny
+We use openai/whisper-tiny, a lightweight automatic speech-recognition (ASR) model that converts spoken prompts directly into text across the interface. Whisper-tiny is optimized for speed, enabling real-time transcription on CPUs and mobile hardware. Despite its small size, it supports ~100 languages, handles multilingual speech, accents, and background noise, and produces reliable text outputs for voice-based commands and prompts. This makes voice interaction seamless across all windows of the application.
+
+
+
+
+
+
+---
+
 ## Text to Image
 ### 1.Sana 1.6B Text to Image 
 #### Pipeline Explanation 
