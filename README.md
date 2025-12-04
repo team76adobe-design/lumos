@@ -82,7 +82,7 @@ LUMOS/
 ## How to Use the Repository
 ```bash
 git clone https://github.com/team76adobe-design/lumos.git
-cd submission
+cd lumos/backend
 pip install huggingface-hub
 hf auth login
 ```
@@ -128,7 +128,7 @@ pip install -r requirements6.txt
 ```
 7)Virtual Environment 7 - MagicQuill
 ```bash
-cd backend/magicquill
+cd magicquill
 git submodule update --init --recursive
 wget -O models.zip "https://hkustconnect-my.sharepoint.com/:u:/g/personal/zliucz_connect_ust_hk/EWlGF0WfawJIrJ1Hn85_-3gB0MtwImAnYeWXuleVQcukMg?e=Gcjugg&download=1"
 unzip models.zip
@@ -141,32 +141,37 @@ cp -f pyproject.toml MagicQuill/LLaVA/
 pip install -e MagicQuill/LLaVA/
 pip install -r requirements.txt
 ```
-
+8)Virtual Environment 8 - Whisper
+```bash
+python3.10 -m venv venv_whisper
+source venv_whisper/bin/activate
+pip install -r requirements7.txt
+```
 Running the Model:- <br>
 1.Sana 1.6B Text to Image <br>
 ```bash
 source venv_6/bin/activate 
-cd backend/sana
+cd sana
 uvicorn main:backend --host 0.0.0.0 --port 8008 
 ```
 2.ledits <br>
 
 ```bash
 source venv_1/bin/activate 
-cd backend/ledits
+cd ledits
 uvicorn main:backend --host 0.0.0.0 --port 8002
 ```
 3.inpaint4drag <br>
 ```bash
 source venv_1/bin/activate 
-cd backend/inpaint4drag
+cd inpaint4drag
 uvicorn main:backend --host 0.0.0.0 --port 8004 
 ```
 4.style transfer loras <br>
 Also you have to change the paths in main according to your path
 ```bash
 source venv_1/bin/activate 
-cd backend/style_transfer_loras
+cd style_transfer_loras
 gdown --fuzzy "https://drive.google.com/file/d/1ouAGb9GIv6hRhUzu8lAtxWXghL76e6VO/view?usp=sharing"
 unzip sd1.5loras.zip 
 uvicorn main:backend --host 0.0.0.0 --port 8002
@@ -174,78 +179,82 @@ uvicorn main:backend --host 0.0.0.0 --port 8002
 5.background removal <br>
 ```bash
 source venv_1/bin/activate 
-cd backend/background_removal
+cd background_removal
 uvicorn main:backend --host 0.0.0.0 --port 8002
 ```
 6.lightningDrag <br>
 ```bash
 source venv_2/bin/activate 
-cd backend/lightningDrag
+cd lightningDrag
 python download.py
 uvicorn main:backend --host 0.0.0.0 --port 8004 
 ```
 7.inpaint <br> 
 ```bash
-gdown --fuzzy "https://drive.google.com/file/d/1DaQyf1010x3pYG6yDaaQuLKWh39ZlWzU/view?usp=drive_link" -O backend/sam/
+gdown --fuzzy "https://drive.google.com/file/d/1DaQyf1010x3pYG6yDaaQuLKWh39ZlWzU/view?usp=drive_link" -O sam/
 source venv_2/bin/activate 
-cd backend/inpaint
+cd inpaint
 uvicorn main:backend --host 0.0.0.0 --port 8002
 ```
 8.outpaint <br>
 ```bash
 source venv_2/bin/activate 
-cd backend/outpaint
+cd outpaint
 uvicorn main:backend --host 0.0.0.0 --port 8005
 ```
 9.smartcrop <br>
 ```bash
 gdown --fuzzy "https://drive.google.com/file/d/1zxS4Qhm3gbfQUHxp097yz4ytB7EWsTfc/view?usp=sharing" -O backend/smartcrop/smartcrop_utils/
 source venv_3/bin/activate 
-cd backend/smartcrop
+cd smartcrop
 uvicorn main:backend --host 0.0.0.0 --port 8006
 ```
 10.Stable-Fast 3D <br>
 ```bash
 source venv_4/bin/activate 
-cd backend/outpaint
+cd outpaint
 uvicorn main:backend --host 0.0.0.0 --port 8004
 ```
 
 11.LBM Relighting Model <br>
 ```bash
 source venv_5/bin/activate 
-cd backend/LBM
+cd LBM
 uvicorn main:backend --host 0.0.0.0 --port 8003
 ```
 12.clip and Moondream <br>
 ```bash
 source venv_5/bin/activate 
-cd backend/clipNmoondream
+cd clipNmoondream
 uvicorn main:backend --host 0.0.0.0 --port 8000
 ```
 13.MagicQuill
 ```bash
-cd backend/magicquill
+cd magicquill
 source Magic_venv/bin/activate
 python main.py
 ```
+
 14.InvisMark - for adding watermark to the image
 ```bash
 source venv_1/bin/activate
-cd backend/InvisMark
+cd InvisMark
 gdown --fuzzy "https://drive.google.com/file/d/1XslNWwvKAyclYrY6cTczqvWV9V9vilv5/view?usp=drive_link" 
 uvicorn main:app --host 0.0.0.0 --port 8013
 ```
 15.Gaurd Rails
 ```bash
 source venv_5/bin/activate
-cd backend/NSFW
+cd NSFW
 uvicorn main:app --host 0.0.0.0 --port 8014
 ```
-Or you can also use the python file to run all commands with a single python file
+16.Whisper - for STT
 ```bash
-python run_all.py
+source venv_whisper/bin/activate
+cd whisper
+python whisper.py
 ```
+
 These are all local pipelines. Similarly the cloud pipelines can be implemented from the given codes in the **CLOUD_FEATURES**.
 ## Overview of Overall Inference 
 
