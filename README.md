@@ -145,7 +145,7 @@ pip install -r requirements.txt
 ```bash
 python3.10 -m venv venv_whisper
 source venv_whisper/bin/activate
-pip install -r requirements7.txt
+pip install -r requirements8.txt
 ```
 Running the Model:- <br>
 1.Sana 1.6B Text to Image <br>
