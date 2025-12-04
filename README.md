@@ -65,6 +65,20 @@ LUMOS/
 └── report/         # All project reports and documentation files
 ```
 
+**Final Deliverables:**
+
+| Submission | Path |
+|----------|------|
+| A) Product Design | `/figma`, `/report/Design Rationale` |
+| B) Editing Ecosystem | `/report/Understanding the Editing Ecosystem` |
+| C) Execution | `/backend`, `/frontend`, `/cloud`, `/report/Technical Report` |
+| D) Optional Creative Artefacts | `/report/Creative Artefacts` , `/report/Decision Logs` |
+
+
+
+
+
+
 ## How to Use the Repository
 ```bash
 git clone https://github.com/team76adobe-design/submission.git
@@ -72,7 +86,8 @@ cd submission
 pip install huggingface-hub
 hf auth login
 ```
-Use this Huggingface Key --> "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"
+Use this Huggingface Key --> "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" <br>
+**NOTE:** This HuggingFace Access Token has been generated explicitly for this repository. It is free-of-cost and safe-to-expose. <br>
 
 There have to be separate virtual environments for running different parts in the workflow. Overall there are 7 virtual environments to be used for the corresponding models- <br>
 1)Virtual Environment 1 - ledits, inpaint4drag, style transfer loras, background removal
@@ -133,20 +148,20 @@ Running the Model:- <br>
 ```bash
 source venv_6/bin/activate 
 cd backend/sana
-uvicorn main:backend --host 0.0.0.0 --port 8000 
+uvicorn main:backend --host 0.0.0.0 --port 8008 
 ```
 2.ledits <br>
 
 ```bash
 source venv_1/bin/activate 
 cd backend/ledits
-uvicorn main:backend --host 0.0.0.0 --port 8001 
+uvicorn main:backend --host 0.0.0.0 --port 8002
 ```
 3.inpaint4drag <br>
 ```bash
 source venv_1/bin/activate 
 cd backend/inpaint4drag
-uvicorn main:backend --host 0.0.0.0 --port 8002 
+uvicorn main:backend --host 0.0.0.0 --port 8004 
 ```
 4.style transfer loras <br>
 Also you have to change the paths in main according to your path
@@ -155,65 +170,65 @@ source venv_1/bin/activate
 cd backend/style_transfer_loras
 gdown --fuzzy "https://drive.google.com/file/d/1ouAGb9GIv6hRhUzu8lAtxWXghL76e6VO/view?usp=sharing"
 unzip sd1.5loras.zip 
-uvicorn main:backend --host 0.0.0.0 --port 8003 
+uvicorn main:backend --host 0.0.0.0 --port 8002
 ```
 5.background removal <br>
 ```bash
 source venv_1/bin/activate 
 cd backend/background_removal
-uvicorn main:backend --host 0.0.0.0 --port 8004 
+uvicorn main:backend --host 0.0.0.0 --port 8002
 ```
 6.lightningDrag <br>
 ```bash
 source venv_2/bin/activate 
 cd backend/lightningDrag
 python download.py
-uvicorn main:backend --host 0.0.0.0 --port 8005 
+uvicorn main:backend --host 0.0.0.0 --port 8004 
 ```
-7.iopainttest <br> 
+7.inpaint <br> 
 ```bash
 gdown --fuzzy "https://drive.google.com/file/d/1DaQyf1010x3pYG6yDaaQuLKWh39ZlWzU/view?usp=drive_link" -O backend/sam/
 source venv_2/bin/activate 
-cd backend/iopainttest
-uvicorn main:backend --host 0.0.0.0 --port 8006 
+cd backend/inpaint
+uvicorn main:backend --host 0.0.0.0 --port 8002
 ```
 8.outpaint <br>
 ```bash
 source venv_2/bin/activate 
 cd backend/outpaint
-uvicorn main:backend --host 0.0.0.0 --port 8007 
+uvicorn main:backend --host 0.0.0.0 --port 8005
 ```
 9.smartcrop <br>
 ```bash
 gdown --fuzzy "https://drive.google.com/file/d/1zxS4Qhm3gbfQUHxp097yz4ytB7EWsTfc/view?usp=sharing" -O backend/smartcrop/smartcrop_utils/
 source venv_3/bin/activate 
 cd backend/smartcrop
-uvicorn main:backend --host 0.0.0.0 --port 8008 
+uvicorn main:backend --host 0.0.0.0 --port 8006
 ```
 10.Stable-Fast 3D <br>
 ```bash
 source venv_4/bin/activate 
 cd backend/outpaint
-uvicorn main:backend --host 0.0.0.0 --port 8009 
+uvicorn main:backend --host 0.0.0.0 --port 8004
 ```
 
 11.LBM Relighting Model <br>
 ```bash
 source venv_5/bin/activate 
 cd backend/LBM
-uvicorn main:backend --host 0.0.0.0 --port 8010
+uvicorn main:backend --host 0.0.0.0 --port 8003
 ```
 12.clip and Moondream <br>
 ```bash
 source venv_5/bin/activate 
 cd backend/clipNmoondream
-uvicorn main:backend --host 0.0.0.0 --port 8011 
+uvicorn main:backend --host 0.0.0.0 --port 8000
 ```
 13.MagicQuill
 ```bash
 source venv_7/bin/activate 
 cd backend/MagicQuill
-uvicorn main:backend --host 0.0.0.0 --port 8012
+uvicorn main:backend --host 0.0.0.0 --port 8000
 ```
 14.InvisMark - for adding watermark to the image
 ```bash
@@ -262,18 +277,6 @@ We incorporate **optimized algorithms on top of SD 1.5**, dramatically improving
 To further streamline the pipeline, models like **Moondream** and **CLIP** are reused across multiple subtasks. Moondream assists with lightweight VLM functions, while CLIP powers semantic reasoning, safety filtering, and classification. Reusing these models avoids repeated initializations, reduces memory fragmentation, and significantly accelerates workflows that rely on vision-language understanding or content validation.
 
 ---
-
-###  Summary
-
-Through dynamic model loading, efficient image downsampling and upscaling, algorithmic improvements on SD 1.5, and strategic reuse of VLM components, the system delivers:
-
--  Low latency  
--  Efficient memory usage  
--  High-quality high-resolution outputs  
--  A clean, scalable, production-ready architecture  
-
-This makes the entire AI image editing experience extremely fast, resource-efficient, and user-friendly.
-
 ## Text to Image
 ### 1.Sana 1.6B Text to Image 
 #### Pipeline Explanation 
@@ -284,7 +287,7 @@ The Sana 1.6B text-to-image pipeline integrates a DiT-based diffusion model with
 
 #### Examples
 <img width="256" height="256" alt="sana1 6b-int4" src="https://github.com/user-attachments/assets/2286892e-a44e-44cd-803f-e492cd0ec716" /> <br>
-### 2.Personalized Flux.1 Dev + Nunchaku:
+### 2.Personalized Flux.1 Dev + Nunchaku (OPTIONAL CLOUD PIPELINE) 
 #### Pipeline Explanation
 Our FLUX.1-dev pipeline combines two powerful components—Nunchaku’s SVD-quantized 4-bit diffusion transformer and a personalized LoRA fine-tuning module—to deliver fast, memory-efficient, identity-aware image generation. During training, we fine-tune FLUX.1-dev using a lightweight LoRA (rank 16) on the UNet while keeping the text encoder frozen, allowing the model to learn a user’s identity from just 12 photos with high fidelity and minimal overfitting. Once personalization is complete, the LoRA module is merged into the quantized Nunchaku FLUX transformer, enabling inference in a low-VRAM environment without sacrificing detail, alignment, or identity consistency. The resulting system is capable of generating high-resolution, photorealistic, and identity-preserving images using simple prompts, while running 2× faster and using only ~30% of full-precision memory. This unified fine-tuning + 4-bit inference pipeline forms one of our core features—allowing rapid, personalized, and cost-efficient image generation on consumer GPUs.
 #### Time & Memory Used
