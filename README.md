@@ -435,7 +435,7 @@ Our dynamic style-transfer system uses Stable Diffusion 1.5 together with a scal
 A2-RL begins by extracting visual features from the input image and initializes a cropping window that the reinforcement learning agent iteratively adjusts through predefined actions such as scaling, translating, and reshaping. At each step, the agent evaluates the aesthetics-aware reward function to guide the crop toward a more pleasing composition, continuing until the termination action signals that the optimal crop has been found. This sequential decision-making pipeline enables fast, intelligent, and high-quality cropping without exhaustive search.
 #### Inference Time & Memory Used 
 * Inference Time - 5 seconds 
-* Memory Used - 16 Gb
+* Memory Used - 8 Gb
 
 #### Examples
 | Input Image |  Output Image|
