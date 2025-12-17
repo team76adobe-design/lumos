@@ -523,7 +523,7 @@ Using a CLIP-based similarity system as guard rails provides a fast, lightweight
 In 2030, users will be far more sensitive about where their personal images are processed, which is why the core Lumos image-editing workflows run fully on-device, avoiding continuous cloud dependence and preventing routine uploads of private photos. However, for users who choose to personalize the model, we provide an optional secure cloud-based LoRA training service. Only the images the user explicitly selects are uploaded through an encrypted channel, processed inside an isolated training container, and permanently deleted immediately after the LoRA weights are produced. The resulting personalized LoRA is the only artifact returned to the user, and no images, metadata, or embeddings are stored or reused for any secondary purpose. This design balances strong privacy with the ability to learn a user’s preferred style—ensuring personalization remains powerful, controlled, and secure.
 
 ## Compute Profile
-All experiments were conducted on Runpod NVIDIA RTX 4090 GPUs for inference, while Runpod NVIDIA A40 GPUs were used for training the personalized LoRA models.
+All experiments were conducted on bunch of moderate GPUs on Runpod , while Runpod NVIDIA A40 GPUs were used for training the personalized LoRA models.
 
 ## References
 
