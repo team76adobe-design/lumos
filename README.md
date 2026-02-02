@@ -2,15 +2,8 @@
 <p align="center">
 <img width="250"  alt="image" src="https://github.com/user-attachments/assets/ca41d8a5-a9ec-4095-a969-b8ffe2058e25" />
 
-<h2>Demo Video</h2>
-
-<a href="https://youtu.be/i-tt5Jt7GBY">
-  <img src="https://img.youtube.com/vi/8_Ilw67fWEA/maxresdefault.jpg" 
-       width="550" 
-       height="350" 
-       alt="Demo Video Thumbnail">
-</a>
-
+## Demo Video
+[![Watch the video](https://img.youtube.com/vi/i-tt5Jt7GBY/maxresdefault.jpg)](https://youtu.be/i-tt5Jt7GBY)
 
 ### [Watch the Demo on YouTube](https://youtu.be/i-tt5Jt7GBY)
 
