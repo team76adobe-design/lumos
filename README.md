@@ -270,7 +270,7 @@ The pipeline supports images up to **2K resolution**, but for faster computation
 
 ####  3. Algorithmic Enhancements on Stable Diffusion 1.5
 
-We incorporate **optimized algorithms on top of SD 1.5**, dramatically improving both inference speed and output accuracy. These enhancements allow SD 1.5 to operate more efficiently than standard implementations while maintaining strong visual fidelity. Because of its versatility, SD 1.5 is reused for **more than 60% of all tasks**, minimizing model-switch overhead and reducing GPU load, which results in smoother and faster operations throughout the system.
+We incorporate **optimized algorithms on top of SD 1.5**, improving both inference speed and output accuracy. These enhancements allow SD 1.5 to operate more efficiently than standard implementations while maintaining strong visual fidelity. Because of its versatility, SD 1.5 is reused for **more than 60% of all tasks**, minimizing model-switch overhead and reducing GPU load, which results in smoother and faster operations throughout the system.
 
 
 ####  4. Reuse of Moondream and CLIP for Auxiliary Tasks
